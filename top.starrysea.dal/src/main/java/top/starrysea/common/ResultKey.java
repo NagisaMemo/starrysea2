@@ -5,15 +5,13 @@ import java.util.Map;
 
 import top.starrysea.kql.entity.Entity;
 
-import top.starrysea.activity.object.dto.Activity;
-
 public enum ResultKey {
 
 	LIST_1(List.class), LIST_2(List.class),
 
-	ENTITY(Entity.class), ACTIVITY(Activity.class),
+	ENTITY(Entity.class),
 
-	INTEGER(Integer.class), BOOLEAN(Boolean.class), DOUBLE(Double.class),
+	INTEGER(Integer.class), BOOLEAN(Boolean.class),
 
 	MAP(Map.class);
 

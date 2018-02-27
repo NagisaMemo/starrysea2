@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import top.starrysea.common.Condition;
@@ -19,13 +20,13 @@ public class WorkController {
 	private IWorkDao workDao;
 
 	@PostMapping("/all")
-	public DaoResult getAllWorkDao(@RequestBody Condition condition, @RequestBody Work work) {
-		return workDao.getAllWorkDao(condition, work);
+	public DaoResult getAllWorkDao(@RequestBody Work work, @RequestParam("page") int page) {
+		return workDao.getAllWorkDao(new Condition(page), work);
 	}
 
 	@PostMapping("/count")
-	public DaoResult getWorkCountDao(@RequestBody Condition condition, @RequestBody Work work) {
-		return workDao.getWorkCountDao(condition, work);
+	public DaoResult getWorkCountDao(@RequestBody Work work, @RequestParam("page") int page) {
+		return workDao.getWorkCountDao(new Condition(page), work);
 	}
 
 	@PostMapping("/one")

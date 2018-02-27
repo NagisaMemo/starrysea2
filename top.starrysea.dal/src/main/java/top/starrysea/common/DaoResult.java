@@ -6,12 +6,15 @@ import java.util.Map;
 
 import top.starrysea.kql.entity.Entity;
 
+import static top.starrysea.common.ResultKey.*;
+
 public class DaoResult {
 
 	private boolean successed;
-	private Map<Class<?>, Object> theResult;
+	private Map<ResultKey, Object> theResult;
 	private String errInfo;
 
+	public DaoResult() {}
 	public DaoResult(boolean successed) {
 		this.successed = successed;
 	}
@@ -19,30 +22,31 @@ public class DaoResult {
 	public DaoResult(boolean successed, Map<?,?> result) {
 		theResult = new HashMap<>();
 		this.successed = successed;
-		this.theResult.put(Map.class, result);
+		this.theResult.put(MAP, result);
 	}
+	
 	public DaoResult(boolean successed, List<?> result) {
 		theResult = new HashMap<>();
 		this.successed = successed;
-		this.theResult.put(List.class, result);
+		this.theResult.put(LIST_1, result);
 	}
 
 	public DaoResult(boolean successed, Entity result) {
 		theResult = new HashMap<>();
 		this.successed = successed;
-		this.theResult.put(result.getClass(), result);
+		this.theResult.put(ENTITY, result);
 	}
 
 	public DaoResult(boolean successed, Integer result) {
 		theResult = new HashMap<>();
 		this.successed = successed;
-		this.theResult.put(Integer.class, result);
+		this.theResult.put(INTEGER, result);
 	}
 	
 	public DaoResult(boolean successed, boolean result) {
 		theResult = new HashMap<>();
 		this.successed = successed;
-		this.theResult.put(Boolean.class, result);
+		this.theResult.put(BOOLEAN, result);
 	}
 
 	public DaoResult(boolean result, String errInfo) {
@@ -66,12 +70,13 @@ public class DaoResult {
 		this.errInfo = errInfo;
 	}
 
-	public Map<Class<?>, Object> getTheResult() {
+	public Map<ResultKey, Object> getTheResult() {
 		return theResult;
 	}
 
-	public <T> T getResult(Class<T> type) {
-		return type.cast(theResult.get(type));
+	@SuppressWarnings("unchecked")
+	public <T> T getResult(ResultKey resultKey) {
+		return (T) resultKey.getClazz().cast(theResult.get(resultKey));
 	}
 
 }

@@ -18,7 +18,9 @@ public class Condition {
 	}
 
 	public Condition(Integer page) {
-		this.page = page;
+		if (page != null) {
+			this.page = page;
+		}
 	}
 
 	public Integer getPage() {

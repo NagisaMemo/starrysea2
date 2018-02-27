@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import top.starrysea.common.Condition;
@@ -19,8 +20,8 @@ public class QuestionController {
 	private IQuestionDao questionDao;
 
 	@PostMapping("/all")
-	public DaoResult getAllQuestionDao(@RequestBody Condition condition, @RequestBody Question question) {
-		return questionDao.getAllQuestionDao(condition, question);
+	public DaoResult getAllQuestionDao(@RequestBody Question question, @RequestParam("page") int page) {
+		return questionDao.getAllQuestionDao(new Condition(page), question);
 	}
 
 	@PostMapping("/save")

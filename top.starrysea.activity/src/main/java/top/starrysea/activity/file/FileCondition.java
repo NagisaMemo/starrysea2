@@ -1,4 +1,4 @@
-package top.starrysea.file;
+package top.starrysea.activity.file;
 
 public class FileCondition {
 

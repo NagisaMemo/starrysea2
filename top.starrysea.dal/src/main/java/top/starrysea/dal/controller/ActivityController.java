@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import top.starrysea.common.Condition;
@@ -27,15 +28,13 @@ public class ActivityController {
 	}
 
 	@PostMapping("/all")
-	public DaoResult getAllActivityDao(@RequestBody Condition condition,
-			@RequestBody Activity activity) {
-		return activityDao.getAllActivityDao(condition, activity);
+	public DaoResult getAllActivityDao(@RequestBody Activity activity, @RequestParam("page") int page) {
+		return activityDao.getAllActivityDao(new Condition(page), activity);
 	}
 
 	@PostMapping("/count")
-	public DaoResult getActivityCountDao(@RequestBody Condition condition,
-			@RequestBody Activity activity) {
-		return activityDao.getActivityCountDao(condition, activity);
+	public DaoResult getActivityCountDao(@RequestBody Activity activity, @RequestParam("page") int page) {
+		return activityDao.getActivityCountDao(new Condition(page), activity);
 	}
 
 	@PostMapping("/one")

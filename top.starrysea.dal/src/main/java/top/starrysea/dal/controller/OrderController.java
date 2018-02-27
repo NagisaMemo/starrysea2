@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import top.starrysea.common.Condition;
@@ -19,13 +20,13 @@ public class OrderController {
 	private IOrderDao orderDao;
 
 	@PostMapping("/all")
-	public DaoResult getAllOrderDao(@RequestBody Condition condition, @RequestBody Orders order) {
-		return orderDao.getAllOrderDao(condition, order);
+	public DaoResult getAllOrderDao(@RequestBody Orders order, @RequestParam("page") int page) {
+		return orderDao.getAllOrderDao(new Condition(page), order);
 	}
 
 	@PostMapping("/count")
-	public DaoResult getOrderCountDao(@RequestBody Condition condition, @RequestBody Orders order) {
-		return orderDao.getOrderCountDao(condition, order);
+	public DaoResult getOrderCountDao(@RequestBody Orders order, @RequestParam("page") int page) {
+		return orderDao.getOrderCountDao(new Condition(page), order);
 	}
 
 	@PostMapping("/one")

@@ -1,45 +1,44 @@
 package top.starrysea.activity.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import top.starrysea.common.Condition;
+import top.starrysea.common.DaoResult;
 import top.starrysea.activity.object.dto.Activity;
 
 @FeignClient(name = "starrysea-dal")
 public interface IActivityDao {
 
-	@GetMapping("/newest")
-	public Map<String, Object> getNewestActivity();
+	@RequestMapping(value = "/activity/newest", method = RequestMethod.GET)
+	public DaoResult getNewestActivityDao();
 
 	@PostMapping("/all")
-	public Map<String, Object> getAllActivity(@RequestBody Condition condition,
-			@RequestBody Activity activity);
+	public DaoResult getAllActivityDao(@RequestBody Activity activity, @RequestParam("page") int page);
 
 	@PostMapping("/count")
-	public Map<String, Object> getActivityCount(@RequestBody Condition condition,
-			@RequestBody Activity activity);
+	public DaoResult getActivityCountDao(@RequestBody Activity activity, @RequestParam("page") int page);
 
 	@PostMapping("/one")
-	public Map<String, Object> getActivity(@RequestBody Activity activity);
+	public DaoResult getActivityDao(@RequestBody Activity activity);
 
 	@PostMapping("/save")
-	public Map<String, Object> saveActivity(@RequestBody Activity activity);
+	public DaoResult saveActivityDao(@RequestBody Activity activity);
 
 	@PostMapping("/update")
-	public Map<String, Object> updateActivity(@RequestBody Activity activity);
+	public DaoResult updateActivityDao(@RequestBody Activity activity);
 
 	@PostMapping("/addMoney")
-	public Map<String, Object> updateAddActivityMoney(@RequestBody List<Activity> activitys);
+	public DaoResult updateAddActivityMoneyDao(@RequestBody List<Activity> activitys);
 
 	@PostMapping("/reduceMoney")
-	public Map<String, Object> updateReduceActivityMoney(@RequestBody Activity activity);
+	public DaoResult updateReduceActivityMoneyDao(@RequestBody Activity activity);
 
 	@PostMapping("/delete")
-	public Map<String, Object> deleteActivity(@RequestBody Activity activity);
+	public DaoResult deleteActivityDao(@RequestBody Activity activity);
 }
