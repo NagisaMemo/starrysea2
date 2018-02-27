@@ -1,15 +1,28 @@
 package top.starrysea.dal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import top.starrysea.dal.dao.IProvinceDao;
 
-@Controller
+import static top.starrysea.dal.common.Const.RESULT;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@RestController
 @RequestMapping("/province")
 public class ProvinceController {
 
 	@Autowired
 	private IProvinceDao provinceDao;
+
+	@RequestMapping("/all")
+	public Map<String, Object> getAllProvinceController() {
+		Map<String, Object> theResult = new HashMap<>();
+		theResult.put(RESULT, provinceDao.getAllProvinceDao().getResult(List.class));
+		return theResult;
+	}
 }
