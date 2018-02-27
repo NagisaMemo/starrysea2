@@ -1,10 +1,12 @@
 package top.starrysea.dal.dao.impl;
 
+import static top.starrysea.common.Common.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import top.starrysea.dal.common.Condition;
-import top.starrysea.dal.common.DaoResult;
+import top.starrysea.common.Condition;
+import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IQuestionDao;
 import top.starrysea.dal.entity.Question;
 import top.starrysea.kql.clause.OrderByType;
@@ -14,8 +16,6 @@ import top.starrysea.kql.clause.WhereType;
 import top.starrysea.kql.facede.IntegerSqlResult;
 import top.starrysea.kql.facede.KumaSqlDao;
 import top.starrysea.kql.facede.ListSqlResult;
-
-import static top.starrysea.dal.common.Common.*;
 
 @Repository("questionDao")
 public class QuestionDaoImpl implements IQuestionDao {

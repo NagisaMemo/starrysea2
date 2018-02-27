@@ -1,19 +1,14 @@
 package top.starrysea.dal.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import top.starrysea.dal.common.DaoResult;
+import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IAdminDao;
 import top.starrysea.dal.entity.Admin;
-
-import static top.starrysea.dal.common.Const.RESULT;
 
 @RestController
 @RequestMapping("/admin")
@@ -23,13 +18,7 @@ public class AdminController {
 	private IAdminDao adminDao;
 
 	@PostMapping("/login")
-	public Map<String, Object> loginController(@RequestBody Admin admin) {
-		DaoResult daoResult = adminDao.loginDao(admin);
-		Map<String, Object> theResult = new HashMap<>();
-		theResult.put(RESULT, daoResult.isSuccessed());
-		if (daoResult.isSuccessed()) {
-			theResult.put("admin", daoResult.getResult(Admin.class));
-		}
-		return theResult;
+	public DaoResult loginDao(@RequestBody Admin admin) {
+		return adminDao.loginDao(admin);
 	}
 }

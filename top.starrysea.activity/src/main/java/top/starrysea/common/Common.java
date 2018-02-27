@@ -1,6 +1,6 @@
-package top.starrysea.dal.common;
+package top.starrysea.common;
 
-import static top.starrysea.dal.common.Const.ERRINFO;
+import static top.starrysea.common.Const.ERRINFO;
 
 import java.io.IOException;
 import java.math.BigInteger;

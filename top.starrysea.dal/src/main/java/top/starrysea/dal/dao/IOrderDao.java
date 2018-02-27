@@ -1,7 +1,7 @@
 package top.starrysea.dal.dao;
 
-import top.starrysea.dal.common.Condition;
-import top.starrysea.dal.common.DaoResult;
+import top.starrysea.common.Condition;
+import top.starrysea.common.DaoResult;
 import top.starrysea.dal.entity.Orders;
 
 public interface IOrderDao {

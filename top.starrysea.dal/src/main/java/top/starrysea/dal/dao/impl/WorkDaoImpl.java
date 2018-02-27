@@ -1,7 +1,7 @@
 package top.starrysea.dal.dao.impl;
 
-import top.starrysea.dal.common.Condition;
-import top.starrysea.dal.common.DaoResult;
+import top.starrysea.common.Condition;
+import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IWorkDao;
 import top.starrysea.dal.entity.Work;
 import top.starrysea.kql.clause.OrderByType;
@@ -14,7 +14,7 @@ import top.starrysea.kql.facede.KumaSqlDao;
 import top.starrysea.kql.facede.ListSqlResult;
 import top.starrysea.kql.facede.UpdateSqlResult;
 
-import static top.starrysea.dal.common.Common.*;
+import static top.starrysea.common.Common.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

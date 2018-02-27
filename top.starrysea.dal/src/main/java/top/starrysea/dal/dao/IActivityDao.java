@@ -2,8 +2,8 @@ package top.starrysea.dal.dao;
 
 import java.util.List;
 
-import top.starrysea.dal.common.Condition;
-import top.starrysea.dal.common.DaoResult;
+import top.starrysea.common.Condition;
+import top.starrysea.common.DaoResult;
 import top.starrysea.dal.entity.Activity;
 
 public interface IActivityDao {

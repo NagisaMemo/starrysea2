@@ -1,17 +1,17 @@
 package top.starrysea.dal.dao.impl;
 
+import static top.starrysea.common.Common.isNotNull;
+import static top.starrysea.common.Common.md5;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import top.starrysea.dal.common.DaoResult;
+import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IAdminDao;
 import top.starrysea.dal.entity.Admin;
 import top.starrysea.kql.clause.WhereType;
 import top.starrysea.kql.facede.KumaSqlDao;
 import top.starrysea.kql.facede.ListSqlResult;
-
-import static top.starrysea.dal.common.Common.isNotNull;
-import static top.starrysea.dal.common.Common.md5;
 
 @Repository("adminDao")
 public class AdminDaoImpl implements IAdminDao {

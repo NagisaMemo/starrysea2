@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
-import top.starrysea.dal.common.Common;
-import top.starrysea.dal.common.Condition;
-import top.starrysea.dal.common.DaoResult;
+import top.starrysea.common.Common;
+import top.starrysea.common.Condition;
+import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IActivityDao;
 import top.starrysea.dal.entity.Activity;
 import top.starrysea.kql.clause.OrderByType;

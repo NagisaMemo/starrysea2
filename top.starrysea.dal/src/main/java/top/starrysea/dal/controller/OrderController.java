@@ -6,15 +6,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import top.starrysea.dal.common.Condition;
+import top.starrysea.common.Condition;
+import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IOrderDao;
 import top.starrysea.dal.entity.Orders;
-
-import static top.starrysea.dal.common.Const.RESULT;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/order")
@@ -24,44 +19,32 @@ public class OrderController {
 	private IOrderDao orderDao;
 
 	@PostMapping("/all")
-	public Map<String, Object> getAllOrderController(@RequestBody Condition condition, @RequestBody Orders order) {
-		Map<String, Object> theResult = new HashMap<>();
-		theResult.put(RESULT, orderDao.getAllOrderDao(condition, order).getResult(List.class));
-		return theResult;
+	public DaoResult getAllOrderDao(@RequestBody Condition condition, @RequestBody Orders order) {
+		return orderDao.getAllOrderDao(condition, order);
 	}
 
 	@PostMapping("/count")
-	public Map<String, Object> getOrderCountController(@RequestBody Condition condition, @RequestBody Orders order) {
-		Map<String, Object> theResult = new HashMap<>();
-		theResult.put(RESULT, orderDao.getOrderCountDao(condition, order).getResult(Integer.class));
-		return theResult;
+	public DaoResult getOrderCountDao(@RequestBody Condition condition, @RequestBody Orders order) {
+		return orderDao.getOrderCountDao(condition, order);
 	}
 
 	@PostMapping("/one")
-	public Map<String, Object> getOrderController(@RequestBody Orders order) {
-		Map<String, Object> theResult = new HashMap<>();
-		theResult.put(RESULT, orderDao.getOrderDao(order).getResult(Orders.class));
-		return theResult;
+	public DaoResult getOrderDao(@RequestBody Orders order) {
+		return orderDao.getOrderDao(order);
 	}
 
 	@PostMapping("/save")
-	public Map<String, Object> saveOrderController(@RequestBody Orders order) {
-		Map<String, Object> theResult = new HashMap<>();
-		theResult.put(RESULT, orderDao.saveOrderDao(order).isSuccessed());
-		return theResult;
+	public DaoResult saveOrderDao(@RequestBody Orders order) {
+		return orderDao.saveOrderDao(order);
 	}
 
 	@PostMapping("/update")
-	public Map<String, Object> updateOrderController(@RequestBody Orders order) {
-		Map<String, Object> theResult = new HashMap<>();
-		theResult.put(RESULT, orderDao.updateOrderDao(order).isSuccessed());
-		return theResult;
+	public DaoResult updateOrderDao(@RequestBody Orders order) {
+		return orderDao.updateOrderDao(order);
 	}
 
 	@PostMapping("/delete")
-	public Map<String, Object> deleteOrderController(@RequestBody Orders order) {
-		Map<String, Object> theResult = new HashMap<>();
-		theResult.put(RESULT, orderDao.deleteOrderDao(order).isSuccessed());
-		return theResult;
+	public DaoResult deleteOrderDao(@RequestBody Orders order) {
+		return orderDao.deleteOrderDao(order);
 	}
 }

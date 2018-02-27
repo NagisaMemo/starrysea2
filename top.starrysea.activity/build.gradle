@@ -28,11 +28,14 @@ dependencies {
 		exclude module: "spring-boot-starter-tomcat"
 	}
 	compile(
+		'org.springframework.boot:spring-boot-starter-jdbc',
 		'org.springframework.boot:spring-boot-starter-aop',
 		'org.springframework.boot:spring-boot-starter-thymeleaf',
 		'org.springframework.boot:spring-boot-starter-jetty',
-		'org.springframework.boot:spring-boot-devtools'
+		'org.springframework.boot:spring-boot-devtools',
+		'org.springframework.mobile:spring-mobile-device'
 	)
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka', version: '1.4.3.RELEASE'
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-feign', version: '1.4.3.RELEASE'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

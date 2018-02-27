@@ -1,4 +1,4 @@
-package top.starrysea.dal.common;
+package top.starrysea.common;
 
 public class Const {
 

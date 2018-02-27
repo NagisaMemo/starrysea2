@@ -3,7 +3,7 @@ package top.starrysea.dal.dao.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import top.starrysea.dal.common.DaoResult;
+import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IProvinceDao;
 import top.starrysea.dal.entity.Area;
 import top.starrysea.dal.entity.City;

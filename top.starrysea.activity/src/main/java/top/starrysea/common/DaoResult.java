@@ -1,4 +1,4 @@
-package top.starrysea.dal.common;
+package top.starrysea.common;
 
 import java.util.HashMap;
 import java.util.List;

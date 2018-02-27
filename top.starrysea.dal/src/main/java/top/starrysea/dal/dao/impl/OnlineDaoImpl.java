@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Repository;
 
-import top.starrysea.dal.common.DaoResult;
+import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IOnlineDao;
 import top.starrysea.dal.entity.Online;
 import top.starrysea.kql.facede.KumaSqlDao;

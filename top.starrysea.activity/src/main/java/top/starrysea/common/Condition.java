@@ -1,4 +1,4 @@
-package top.starrysea.dal.common;
+package top.starrysea.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

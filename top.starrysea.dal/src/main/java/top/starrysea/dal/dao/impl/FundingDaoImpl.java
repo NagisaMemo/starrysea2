@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
-import top.starrysea.dal.common.DaoResult;
+import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IFundingDao;
 import top.starrysea.dal.entity.Funding;
 import top.starrysea.kql.clause.WhereType;
