@@ -1,11 +1,6 @@
 server:
   port: 8010
-spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    password: developer
-    url: jdbc:mysql://120.79.24.63:3306/ss_test?useSSL=false&useUnicode=true&characterEncoding=UTF-8
-    username: developer
+spring: 
   application:
     name: starrysea-activity
 eureka:
