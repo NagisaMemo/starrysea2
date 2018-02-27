@@ -1,6 +1,8 @@
 package top.starrysea.dal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,43 +23,43 @@ public class OrderController {
 	@Autowired
 	private IOrderDao orderDao;
 
-	@RequestMapping("/all")
-	public Map<String, Object> getAllOrderController(Condition condition, Orders order) {
+	@PostMapping("/all")
+	public Map<String, Object> getAllOrderController(@RequestBody Condition condition, @RequestBody Orders order) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, orderDao.getAllOrderDao(condition, order).getResult(List.class));
 		return theResult;
 	}
 
-	@RequestMapping("/count")
-	public Map<String, Object> getOrderCountController(Condition condition, Orders order) {
+	@PostMapping("/count")
+	public Map<String, Object> getOrderCountController(@RequestBody Condition condition, @RequestBody Orders order) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, orderDao.getOrderCountDao(condition, order).getResult(Integer.class));
 		return theResult;
 	}
 
-	@RequestMapping("/one")
-	public Map<String, Object> getOrderController(Orders order) {
+	@PostMapping("/one")
+	public Map<String, Object> getOrderController(@RequestBody Orders order) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, orderDao.getOrderDao(order).getResult(Orders.class));
 		return theResult;
 	}
 
-	@RequestMapping("/save")
-	public Map<String, Object> saveOrderController(Orders order) {
+	@PostMapping("/save")
+	public Map<String, Object> saveOrderController(@RequestBody Orders order) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, orderDao.saveOrderDao(order).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/update")
-	public Map<String, Object> updateOrderController(Orders order) {
+	@PostMapping("/update")
+	public Map<String, Object> updateOrderController(@RequestBody Orders order) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, orderDao.updateOrderDao(order).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/delete")
-	public Map<String, Object> deleteOrderController(Orders order) {
+	@PostMapping("/delete")
+	public Map<String, Object> deleteOrderController(@RequestBody Orders order) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, orderDao.deleteOrderDao(order).isSuccessed());
 		return theResult;

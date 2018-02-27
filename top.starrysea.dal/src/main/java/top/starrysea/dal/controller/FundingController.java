@@ -1,6 +1,8 @@
 package top.starrysea.dal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,22 +22,22 @@ public class FundingController {
 	@Autowired
 	private IFundingDao fundingDao;
 
-	@RequestMapping("/all")
-	public Map<String, Object> getAllFundingController(Funding funding) {
+	@PostMapping("/all")
+	public Map<String, Object> getAllFundingController(@RequestBody Funding funding) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, fundingDao.getAllFundingDao(funding).getResult(List.class));
 		return theResult;
 	}
 
-	@RequestMapping("/save")
-	public Map<String, Object> saveFundingController(List<Funding> fundings) {
+	@PostMapping("/save")
+	public Map<String, Object> saveFundingController(@RequestBody List<Funding> fundings) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, fundingDao.saveFundingDao(fundings).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/delete")
-	public Map<String, Object> deleteFundingController(Funding funding) {
+	@PostMapping("/delete")
+	public Map<String, Object> deleteFundingController(@RequestBody Funding funding) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, fundingDao.deleteFundingDao(funding).isSuccessed());
 		return theResult;

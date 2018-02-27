@@ -1,6 +1,8 @@
 package top.starrysea.dal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,64 +23,64 @@ public class WorkTypeController {
 	@Autowired
 	private IWorkTypeDao workTypeDao;
 
-	@RequestMapping("/all")
-	public Map<String, Object> getAllWorkTypeController(WorkType workType) {
+	@PostMapping("/all")
+	public Map<String, Object> getAllWorkTypeController(@RequestBody WorkType workType) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, workTypeDao.getAllWorkTypeDao(workType).getResult(List.class));
 		return theResult;
 	}
 
-	@RequestMapping("/stock")
-	public Map<String, Object> getWorkTypeStockController(WorkType workType) {
+	@PostMapping("/stock")
+	public Map<String, Object> getWorkTypeStockController(@RequestBody WorkType workType) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, workTypeDao.getWorkTypeStockDao(workType).getResult(Integer.class));
 		return theResult;
 	}
 
-	@RequestMapping("/name")
-	public Map<String, Object> getWorkTypeNameController(WorkType workType) {
+	@PostMapping("/name")
+	public Map<String, Object> getWorkTypeNameController(@RequestBody WorkType workType) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, workTypeDao.getWorkTypeNameDao(workType).getResult(WorkType.class));
 		return theResult;
 	}
 
-	@RequestMapping("/save")
-	public Map<String, Object> saveWorkTypeController(List<WorkType> workTypes) {
+	@PostMapping("/save")
+	public Map<String, Object> saveWorkTypeController(@RequestBody List<WorkType> workTypes) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, workTypeDao.saveWorkTypeDao(workTypes).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/delete")
-	public Map<String, Object> deleteWorkTypeController(WorkType workType) {
+	@PostMapping("/delete")
+	public Map<String, Object> deleteWorkTypeController(@RequestBody WorkType workType) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, workTypeDao.deleteWorkTypeDao(workType).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/updateStock")
-	public Map<String, Object> updateWorkTypeStockController(WorkType workType) {
+	@PostMapping("/updateStock")
+	public Map<String, Object> updateWorkTypeStockController(@RequestBody WorkType workType) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, workTypeDao.updateWorkTypeStockDao(workType).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/reduceStock")
-	public Map<String, Object> reduceWorkTypeStockController(WorkType workType) {
+	@PostMapping("/reduceStock")
+	public Map<String, Object> reduceWorkTypeStockController(@RequestBody WorkType workType) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, workTypeDao.reduceWorkTypeStockDao(workType).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/updateStockByOrder")
-	public Map<String, Object> updateWorkTypeStockController(Orders order) {
+	@PostMapping("/updateStockByOrder")
+	public Map<String, Object> updateWorkTypeStockController(@RequestBody Orders order) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, workTypeDao.updateWorkTypeStockDao(order).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/allForCar")
-	public Map<String, Object> getAllWorkTypeForShoppingCarController(List<WorkType> workTypes) {
+	@PostMapping("/allForCar")
+	public Map<String, Object> getAllWorkTypeForShoppingCarController(@RequestBody List<WorkType> workTypes) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, workTypeDao.getAllWorkTypeForShoppingCarDao(workTypes).getResult(List.class));
 		return theResult;

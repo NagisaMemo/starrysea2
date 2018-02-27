@@ -1,6 +1,9 @@
 package top.starrysea.dal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,28 +23,28 @@ public class OrderDetailController {
 	@Autowired
 	private IOrderDetailDao orderDetailDao;
 
-	@RequestMapping("/all")
-	public Map<String, Object> getAllOrderDetailController(OrderDetail orderDetail) {
+	@PostMapping("/all")
+	public Map<String, Object> getAllOrderDetailController(@RequestBody OrderDetail orderDetail) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, orderDetailDao.getAllOrderDetailDao(orderDetail).getResult(List.class));
 		return theResult;
 	}
 
-	@RequestMapping("/save")
-	public Map<String, Object> saveOrderDetailsController(List<OrderDetail> orderDetails) {
+	@PostMapping("/save")
+	public Map<String, Object> saveOrderDetailsController(@RequestBody List<OrderDetail> orderDetails) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, orderDetailDao.saveOrderDetailsDao(orderDetails).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/isExist")
-	public Map<String, Object> isOrderDetailExistController(OrderDetail orderDetail) {
+	@PostMapping("/isExist")
+	public Map<String, Object> isOrderDetailExistController(@RequestBody OrderDetail orderDetail) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, orderDetailDao.isOrderDetailExistDao(orderDetail).getResult(Boolean.class));
 		return theResult;
 	}
 
-	@RequestMapping("/xls")
+	@GetMapping("/xls")
 	public Map<String, Object> getAllOrderDetailForXls() {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, orderDetailDao.getAllOrderDetailForXls().getResult(List.class));

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +22,8 @@ public class AdminController {
 	@Autowired
 	private IAdminDao adminDao;
 
-	@RequestMapping("/login")
-	public Map<String, Object> loginController(Admin admin) {
+	@PostMapping("/login")
+	public Map<String, Object> loginController(@RequestBody Admin admin) {
 		DaoResult daoResult = adminDao.loginDao(admin);
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, daoResult.isSuccessed());

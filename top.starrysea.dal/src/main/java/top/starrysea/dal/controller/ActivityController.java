@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,64 +24,66 @@ public class ActivityController {
 	@Autowired
 	private IActivityDao activityDao;
 
-	@RequestMapping("/newest")
+	@GetMapping("/newest")
 	public Map<String, Object> getNewestActivityController() {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, activityDao.getNewestActivityDao().getResult(Activity.class));
 		return theResult;
 	}
 
-	@RequestMapping("/all")
-	public Map<String, Object> getAllActivityController(Condition condition, Activity activity) {
+	@PostMapping("/all")
+	public Map<String, Object> getAllActivityController(@RequestBody Condition condition,
+			@RequestBody Activity activity) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, activityDao.getAllActivityDao(condition, activity).getResult(List.class));
 		return theResult;
 	}
 
-	@RequestMapping("/count")
-	public Map<String, Object> getActivityCountController(Condition condition, Activity activity) {
+	@PostMapping("/count")
+	public Map<String, Object> getActivityCountController(@RequestBody Condition condition,
+			@RequestBody Activity activity) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, activityDao.getActivityCountDao(condition, activity).getResult(Integer.class));
 		return theResult;
 	}
 
-	@RequestMapping("/one")
-	public Map<String, Object> getActivityController(Activity activity) {
+	@PostMapping("/one")
+	public Map<String, Object> getActivityController(@RequestBody Activity activity) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, activityDao.getActivityDao(activity).getResult(Activity.class));
 		return theResult;
 	}
 
-	@RequestMapping("/save")
-	public Map<String, Object> saveActivityController(Activity activity) {
+	@PostMapping("/save")
+	public Map<String, Object> saveActivityController(@RequestBody Activity activity) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, activityDao.saveActivityDao(activity).getResult(Integer.class));
 		return theResult;
 	}
 
-	@RequestMapping("/update")
-	public Map<String, Object> updateActivityController(Activity activity) {
+	@PostMapping("/update")
+	public Map<String, Object> updateActivityController(@RequestBody Activity activity) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, activityDao.updateActivityDao(activity).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/addMoney")
-	public Map<String, Object> updateAddActivityMoneyController(List<Activity> activitys) {
+	@PostMapping("/addMoney")
+	public Map<String, Object> updateAddActivityMoneyController(@RequestBody List<Activity> activitys) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, activityDao.updateAddActivityMoneyDao(activitys).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/reduceMoney")
-	public Map<String, Object> updateReduceActivityMoneyController(Activity activity) {
+	@PostMapping("/reduceMoney")
+	public Map<String, Object> updateReduceActivityMoneyController(@RequestBody Activity activity) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, activityDao.updateReduceActivityMoneyDao(activity).isSuccessed());
 		return theResult;
 	}
 
-	@RequestMapping("/delete")
-	public Map<String, Object> deleteActivityController(Activity activity) {
+	@PostMapping("/delete")
+	public Map<String, Object> deleteActivityController(@RequestBody Activity activity) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, activityDao.deleteActivityDao(activity).isSuccessed());
 		return theResult;

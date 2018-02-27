@@ -1,6 +1,7 @@
 package top.starrysea.dal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class ProvinceController {
 	@Autowired
 	private IProvinceDao provinceDao;
 
-	@RequestMapping("/all")
+	@GetMapping("/all")
 	public Map<String, Object> getAllProvinceController() {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, provinceDao.getAllProvinceDao().getResult(List.class));

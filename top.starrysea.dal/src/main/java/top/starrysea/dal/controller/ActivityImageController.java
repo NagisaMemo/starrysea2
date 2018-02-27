@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,15 +23,15 @@ public class ActivityImageController {
 	@Autowired
 	private IActivityImageDao activityImageDao;
 
-	@RequestMapping("/all")
-	public Map<String, Object> getAllActivityImageController(Activity activity) {
+	@PostMapping("/all")
+	public Map<String, Object> getAllActivityImageController(@RequestBody Activity activity) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, activityImageDao.getAllActivityImageDao(activity).getResult(List.class));
 		return theResult;
 	}
 
-	@RequestMapping("/save")
-	public Map<String, Object> saveActivityImageDao(List<ActivityImage> activityImages) {
+	@PostMapping("/save")
+	public Map<String, Object> saveActivityImageDao(@RequestBody List<ActivityImage> activityImages) {
 		Map<String, Object> theResult = new HashMap<>();
 		theResult.put(RESULT, activityImageDao.saveActivityImageDao(activityImages).isSuccessed());
 		return theResult;
