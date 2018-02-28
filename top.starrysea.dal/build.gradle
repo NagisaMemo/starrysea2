@@ -24,8 +24,13 @@ repositories {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-jdbc')
-	compile('org.springframework.boot:spring-boot-starter-web')
+	compile(
+		'org.springframework.boot:spring-boot-starter-jdbc',
+		'org.springframework.boot:spring-boot-devtools'
+	)
+	compile('org.springframework.boot:spring-boot-starter-web'){
+		exclude module: "spring-boot-starter-tomcat"
+	}
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka', version: '1.4.3.RELEASE'
 	compile fileTree(dir:'lib',include:['*.jar'])
 	runtime('mysql:mysql-connector-java')
