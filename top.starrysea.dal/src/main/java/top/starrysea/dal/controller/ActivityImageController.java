@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IActivityImageDao;
 import top.starrysea.dal.entity.Activity;
 import top.starrysea.dal.entity.ActivityImage;
@@ -21,12 +20,12 @@ public class ActivityImageController {
 	private IActivityImageDao activityImageDao;
 
 	@PostMapping("/all")
-	public DaoResult getAllActivityImageDao(@RequestBody Activity activity) {
-		return activityImageDao.getAllActivityImageDao(activity);
+	public List<ActivityImage> getAllActivityImageDao(@RequestBody Activity activity) {
+		return activityImageDao.getAllActivityImageDao(activity).getResult(List.class);
 	}
 
 	@PostMapping("/save")
-	public DaoResult saveActivityImageDao(@RequestBody List<ActivityImage> activityImages) {
-		return activityImageDao.saveActivityImageDao(activityImages);
+	public Boolean saveActivityImageDao(@RequestBody List<ActivityImage> activityImages) {
+		return activityImageDao.saveActivityImageDao(activityImages).getResult(Boolean.class);
 	}
 }

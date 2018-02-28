@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import top.starrysea.common.Condition;
-import top.starrysea.common.DaoResult;
 import top.starrysea.common.ServiceResult;
 import top.starrysea.activity.dao.IActivityDao;
 import top.starrysea.activity.dao.IActivityImageDao;
@@ -41,7 +38,7 @@ public class ActivityServiceImpl implements IActivityService {
 	private IActivityImageDao activityImageDao;
 	@Autowired
 	private IFundingDao fundingDao;
-	@Resource(name = "fileUtil")
+	@Autowired
 	private FileUtil fileUtil;
 	public static final int PAGE_LIMIT = 10;
 
@@ -49,13 +46,10 @@ public class ActivityServiceImpl implements IActivityService {
 	// 查询所有众筹活动
 	public ServiceResult queryAllActivityService(Condition condition, Activity activity) {
 		ServiceResult result = new ServiceResult();
-		DaoResult daoResult = activityDao.getNewestActivityDao();
-		Activity a = daoResult.getResult(ENTITY);
-		daoResult = activityDao.getAllActivityDao(activity, condition.getPage());
-		List<Activity> activitylist = daoResult.getResult(LIST_1);
+		Activity a = activityDao.getNewestActivityDao();
+		List<Activity> activitylist = activityDao.getAllActivityDao(activity, condition.getPage());
 		int totalPage = 0;
-		daoResult = activityDao.getActivityCountDao(activity, condition.getPage());
-		int count = daoResult.getResult(INTEGER);
+		int count = activityDao.getActivityCountDao(activity, condition.getPage());
 		if (count % PAGE_LIMIT == 0)
 			totalPage = count / PAGE_LIMIT;
 		else
@@ -73,12 +67,10 @@ public class ActivityServiceImpl implements IActivityService {
 	// 查询一个众筹活动的详情页
 	public ServiceResult queryActivityService(Activity activity) {
 		ServiceResult result = new ServiceResult();
-		DaoResult daoResult = activityDao.getActivityDao(activity);
-		Activity a = daoResult.getResult(ACTIVITY);
+		Activity a = activityDao.getActivityDao(activity);
 		result.setSuccessed(true);
 		result.setResult(ACTIVITY, a);
-		daoResult = fundingDao.getAllFundingDao(new Funding.Builder().activity(activity).build());
-		List<Funding> fundings = daoResult.getResult(LIST_1);
+		List<Funding> fundings = fundingDao.getAllFundingDao(new Funding.Builder().activity(activity).build());
 		double fundingMoneySum = fundings.stream().collect(Collectors.summingDouble(Funding::getFundingMoney));
 		double richThreshold = fundingMoneySum * FUNDING_FACTOR;
 		List<Funding> richFundings = new ArrayList<>();
@@ -106,8 +98,7 @@ public class ActivityServiceImpl implements IActivityService {
 					FileCondition.of(FileType.IMG, 1, activity.getActivityName()));
 			activity.setActivityCover(originCoverFileName);
 			activity.setActivityStatus((short) 1);
-			DaoResult daoResult = activityDao.saveActivityDao(activity);
-			activity.setActivityId(daoResult.getResult(INTEGER));
+			activity.setActivityId(activityDao.saveActivityDao(activity));
 			for (ActivityImage activityImage : activityImages) {
 				activityImage.setActivity(activity);
 			}
@@ -165,7 +156,6 @@ public class ActivityServiceImpl implements IActivityService {
 			logger.error(e.getMessage(), e);
 			throw new UpdateException(e);
 		}
-
 	}
 
 }

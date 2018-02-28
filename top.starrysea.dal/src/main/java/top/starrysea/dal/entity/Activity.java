@@ -14,6 +14,7 @@ public class Activity implements Entity {
 	private String activityEndtime;
 	private Double activityMoney;
 
+	public Activity() {}
 	public Activity(Builder builder) {
 		this.activityId = builder.activityId;
 		this.activityName = builder.activityName;

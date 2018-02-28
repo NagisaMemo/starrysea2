@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import top.starrysea.common.Condition;
-import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IActivityDao;
 import top.starrysea.dal.entity.Activity;
 
@@ -23,47 +22,47 @@ public class ActivityController {
 	private IActivityDao activityDao;
 
 	@GetMapping("/newest")
-	public DaoResult getNewestActivityDao() {
-		return activityDao.getNewestActivityDao();
+	public Activity getNewestActivityDao() {
+		return activityDao.getNewestActivityDao().getResult(Activity.class);
 	}
 
 	@PostMapping("/all")
-	public DaoResult getAllActivityDao(@RequestBody Activity activity, @RequestParam("page") int page) {
-		return activityDao.getAllActivityDao(new Condition(page), activity);
+	public List<Activity> getAllActivityDao(@RequestBody Activity activity, @RequestParam("page") int page) {
+		return activityDao.getAllActivityDao(new Condition(page), activity).getResult(List.class);
 	}
 
 	@PostMapping("/count")
-	public DaoResult getActivityCountDao(@RequestBody Activity activity, @RequestParam("page") int page) {
-		return activityDao.getActivityCountDao(new Condition(page), activity);
+	public Integer getActivityCountDao(@RequestBody Activity activity, @RequestParam("page") int page) {
+		return activityDao.getActivityCountDao(new Condition(page), activity).getResult(Integer.class);
 	}
 
 	@PostMapping("/one")
-	public DaoResult getActivityDao(@RequestBody Activity activity) {
-		return activityDao.getActivityDao(activity);
+	public Activity getActivityDao(@RequestBody Activity activity) {
+		return activityDao.getActivityDao(activity).getResult(Activity.class);
 	}
 
 	@PostMapping("/save")
-	public DaoResult saveActivityDao(@RequestBody Activity activity) {
-		return activityDao.saveActivityDao(activity);
+	public Integer saveActivityDao(@RequestBody Activity activity) {
+		return activityDao.saveActivityDao(activity).getResult(Integer.class);
 	}
 
 	@PostMapping("/update")
-	public DaoResult updateActivityDao(@RequestBody Activity activity) {
-		return activityDao.updateActivityDao(activity);
+	public Boolean updateActivityDao(@RequestBody Activity activity) {
+		return activityDao.updateActivityDao(activity).getResult(Boolean.class);
 	}
 
 	@PostMapping("/addMoney")
-	public DaoResult updateAddActivityMoneyDao(@RequestBody List<Activity> activitys) {
-		return activityDao.updateAddActivityMoneyDao(activitys);
+	public Boolean updateAddActivityMoneyDao(@RequestBody List<Activity> activitys) {
+		return activityDao.updateAddActivityMoneyDao(activitys).getResult(Boolean.class);
 	}
 
 	@PostMapping("/reduceMoney")
-	public DaoResult updateReduceActivityMoneyDao(@RequestBody Activity activity) {
-		return activityDao.updateReduceActivityMoneyDao(activity);
+	public Boolean updateReduceActivityMoneyDao(@RequestBody Activity activity) {
+		return activityDao.updateReduceActivityMoneyDao(activity).getResult(Boolean.class);
 	}
 
 	@PostMapping("/delete")
-	public DaoResult deleteActivityDao(@RequestBody Activity activity) {
-		return activityDao.deleteActivityDao(activity);
+	public Boolean deleteActivityDao(@RequestBody Activity activity) {
+		return activityDao.deleteActivityDao(activity).getResult(Boolean.class);
 	}
 }
