@@ -11,6 +11,7 @@ public class Funding implements Entity {
 	private Double fundingMoney;
 	private String fundingMessage;
 	
+	public Funding() {}
 	private Funding(Builder builder) {
 		this.fundingId=builder.fundingId;
 		this.activity=builder.activity;

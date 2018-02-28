@@ -13,6 +13,7 @@ public class Work implements Entity {
 	private String workSummary;
 	private Integer workClick;
 
+	public Work() {}
 	private Work(Builder builder) {
 		this.workId = builder.workId;
 		this.workName = builder.workName;

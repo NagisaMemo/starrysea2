@@ -9,6 +9,7 @@ public class WorkImage implements Entity {
 	private Work work;
 	private String workImagePath;
 
+	public WorkImage() {}
 	private WorkImage(Builder builder) {
 		this.workImageId = builder.workImageId;
 		this.work = builder.work;

@@ -12,12 +12,12 @@ import top.starrysea.activity.object.dto.Funding;
 @FeignClient(name = "starrysea-dal")
 public interface IFundingDao {
 
-	@RequestMapping(value = "/all", method = RequestMethod.POST)
+	@RequestMapping(value = "/funding/all", method = RequestMethod.POST)
 	public List<Funding> getAllFundingDao(@RequestBody Funding funding);
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/funding/save", method = RequestMethod.POST)
 	public Boolean saveFundingDao(@RequestBody List<Funding> fundings);
 
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/funding/delete", method = RequestMethod.POST)
 	public Boolean deleteFundingDao(@RequestBody Funding funding);
 }

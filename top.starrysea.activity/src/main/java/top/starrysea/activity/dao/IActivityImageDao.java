@@ -14,9 +14,9 @@ import top.starrysea.common.DaoResult;
 @FeignClient(name = "starrysea-dal")
 public interface IActivityImageDao {
 
-	@RequestMapping(value = "/all", method = RequestMethod.POST)
+	@RequestMapping(value = "/activityImage/all", method = RequestMethod.POST)
 	public DaoResult getAllActivityImageDao(@RequestBody Activity activity);
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/activityImage/save", method = RequestMethod.POST)
 	public DaoResult saveActivityImageDao(@RequestBody List<ActivityImage> activityImages);
 }

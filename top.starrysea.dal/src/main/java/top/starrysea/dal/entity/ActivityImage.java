@@ -9,6 +9,7 @@ public class ActivityImage implements Entity{
 	private Activity activity;
 	private String activityImagePath;
 
+	public ActivityImage() {}
 	private ActivityImage(Builder builder) {
 		this.activityImageId = builder.activityImageId;
 		this.activity = builder.activity;

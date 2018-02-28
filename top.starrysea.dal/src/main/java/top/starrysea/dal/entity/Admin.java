@@ -9,7 +9,8 @@ public class Admin implements Entity {
 	private String adminUseraccount;
 	private String adminPassword;
 
-	public Admin(Builder builder) {
+	public Admin() {}
+	private Admin(Builder builder) {
 		this.adminId = builder.adminId;
 		this.adminUseraccount = builder.adminUseraccount;
 		this.adminPassword = builder.adminPassword;

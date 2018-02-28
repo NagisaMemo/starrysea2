@@ -10,6 +10,7 @@ public class WorkType implements Entity {
 	private String name;
 	private Integer stock;
 
+	public WorkType() {}
 	private WorkType(Builder builder) {
 		this.workTypeId = builder.workTypeId;
 		this.work = builder.work;

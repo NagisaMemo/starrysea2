@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -37,11 +37,11 @@ import static top.starrysea.common.ResultKey.*;
 @Controller
 public class ActivityController {
 
-	@Resource(name = "activityService")
+	@Autowired
 	private IActivityService activityService;
 
 	// 查询所有众筹活动
-	@RequestMapping(value = "/activity", method = RequestMethod.GET)
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public ModelAndView queryAllActivityController(ActivityForAll activity, Device device) {
 		ServiceResult serviceResult = activityService.queryAllActivityService(activity.getCondition(),
 				activity.toDTO());
@@ -56,7 +56,7 @@ public class ActivityController {
 	}
 
 	// 查询所有众筹活动
-	@RequestMapping(value = "/activity/ajax", method = RequestMethod.POST)
+	@RequestMapping(value = "/ajax", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> queryAllActivityControllerAjax(@RequestBody ActivityForAll activity) {
 		ServiceResult serviceResult = activityService.queryAllActivityService(activity.getCondition(),
@@ -71,7 +71,7 @@ public class ActivityController {
 	}
 
 	// 查询一个众筹活动的详情页
-	@RequestMapping(value = "/activity/{activityId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{activityId}", method = RequestMethod.GET)
 	public ModelAndView queryActivityController(@Valid ActivityForOne activity, BindingResult bindingResult,
 			Device device) {
 		ServiceResult serviceResult = activityService.queryActivityService(activity.toDTO());
@@ -85,7 +85,7 @@ public class ActivityController {
 	}
 
 	// 查询一个众筹活动的详情页
-	@RequestMapping(value = "/activity/detail/ajax", method = RequestMethod.POST)
+	@RequestMapping(value = "/detail/ajax", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> queryActivityControllerAjax(@RequestBody @Valid ActivityForOne activity,
 			BindingResult bindingResult) {
@@ -99,7 +99,7 @@ public class ActivityController {
 	}
 
 	// 添加一个众筹活动
-	@RequestMapping(value = "/activity/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView addActivityController(@RequestParam("coverFile") MultipartFile coverFile,
 			@Valid ActivityForAdd activity, BindingResult bindingResult, Device device) {
 		activityService.addActivityService(coverFile, activity.toDTO(), activity.toDTOImage());
@@ -107,7 +107,7 @@ public class ActivityController {
 	}
 
 	// 修改一个众筹活动的状态
-	@RequestMapping(value = "/activity/modify", method = RequestMethod.POST)
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public ModelAndView modifyActivityController(@Valid ActivityForModify activity, BindingResult bindingResult,
 			Device device) {
 		activityService.modifyActivityService(activity.toDTO());
@@ -115,14 +115,14 @@ public class ActivityController {
 	}
 
 	// 删除一个众筹活动
-	@RequestMapping(value = "/activity/remove", method = RequestMethod.POST)
+	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public ModelAndView removeActivityController(@Valid ActivityForOne activity, BindingResult bindingResult,
 			Device device) {
 		activityService.removeActivityService(activity.toDTO());
 		return ModelAndViewFactory.newSuccessMav("删除成功!", device);
 	}
 
-	@RequestMapping(value = "/activity/funding/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/funding/add", method = RequestMethod.POST)
 	public ModelAndView addFundingController(@Valid FundingForAddList fundings, BindingResult bindingResult,
 			Device device) {
 		for (FundingForAdd funding : fundings.getFundings()) {
@@ -133,7 +133,7 @@ public class ActivityController {
 		return ModelAndViewFactory.newSuccessMav("添加成功!", device);
 	}
 
-	@RequestMapping(value = "/activity/funding/remove", method = RequestMethod.POST)
+	@RequestMapping(value = "/funding/remove", method = RequestMethod.POST)
 	public ModelAndView removeFundingController(@Valid FundingForRemove funding, BindingResult bindingResult,
 			Device device) {
 		activityService.removeFundingService(funding.toDTO());

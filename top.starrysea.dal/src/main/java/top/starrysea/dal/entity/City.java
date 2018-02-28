@@ -9,6 +9,7 @@ public class City implements Entity {
 	private Province province;
 	private String cityName;
 
+	public City() {}
 	private City(Builder builder) {
 		this.cityId = builder.cityId;
 		this.province = builder.province;

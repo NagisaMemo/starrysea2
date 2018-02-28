@@ -17,6 +17,7 @@ public class Orders implements Entity {
 	private String orderRemark;
 	private String orderPhone;
 
+	public Orders() {}
 	private Orders(Builder builder) {
 		this.orderId = builder.orderId;
 		this.orderNum = builder.orderNum;

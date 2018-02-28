@@ -22,21 +22,21 @@ public interface IActivityDao {
 	@RequestMapping(value = "/activity/count", method = RequestMethod.POST)
 	public Integer getActivityCountDao(@RequestBody Activity activity, @RequestParam("page") int page);
 
-	@RequestMapping(value = "/one", method = RequestMethod.POST)
+	@RequestMapping(value = "/activity/one", method = RequestMethod.POST)
 	public Activity getActivityDao(@RequestBody Activity activity);
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/activity/save", method = RequestMethod.POST)
 	public Integer saveActivityDao(@RequestBody Activity activity);
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/activity/update", method = RequestMethod.POST)
 	public Boolean updateActivityDao(@RequestBody Activity activity);
 
-	@RequestMapping(value = "/addMoney", method = RequestMethod.POST)
+	@RequestMapping(value = "/activity/addMoney", method = RequestMethod.POST)
 	public Boolean updateAddActivityMoneyDao(@RequestBody List<Activity> activitys);
 
-	@RequestMapping(value = "/reduceMoney", method = RequestMethod.POST)
+	@RequestMapping(value = "/activity/reduceMoney", method = RequestMethod.POST)
 	public Boolean updateReduceActivityMoneyDao(@RequestBody Activity activity);
 
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/activity/delete", method = RequestMethod.POST)
 	public Boolean deleteActivityDao(@RequestBody Activity activity);
 }

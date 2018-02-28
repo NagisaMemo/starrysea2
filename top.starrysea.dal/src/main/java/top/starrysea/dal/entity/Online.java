@@ -8,6 +8,7 @@ public class Online implements Entity {
 	private String onlineId;
 	private String onlineEmail;
 
+	public Online() {}
 	private Online(Builder builder) {
 		this.onlineId = builder.onlineId;
 		this.onlineEmail = builder.onlineEmail;
