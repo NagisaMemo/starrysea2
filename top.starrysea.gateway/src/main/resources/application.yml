@@ -9,6 +9,6 @@ eureka:
       defaultZone: http://localhost:8000/eureka
 zuul:
   routes:
-    user-route: 
+    activity: 
       path: /activity/**
       service-id: starrysea-activity
