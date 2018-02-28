@@ -27,7 +27,7 @@ public class OnlineDaoImpl implements IOnlineDao {
 					.table(Online.class).end();
 		} catch (DuplicateKeyException e) {
 			logger.error(e.getMessage(), e);
-			return new DaoResult(false, "重复的email!");
+			return new DaoResult(false);
 		}
 		return new DaoResult(true);
 	}

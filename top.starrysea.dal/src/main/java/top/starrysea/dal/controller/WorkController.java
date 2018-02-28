@@ -1,5 +1,7 @@
 package top.starrysea.dal.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import top.starrysea.common.Condition;
-import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IWorkDao;
 import top.starrysea.dal.entity.Work;
 
@@ -20,32 +21,32 @@ public class WorkController {
 	private IWorkDao workDao;
 
 	@PostMapping("/all")
-	public DaoResult getAllWorkDao(@RequestBody Work work, @RequestParam("page") int page) {
-		return workDao.getAllWorkDao(new Condition(page), work);
+	public List<Work> getAllWorkDao(@RequestBody Work work, @RequestParam("page") int page) {
+		return workDao.getAllWorkDao(new Condition(page), work).getResult(List.class);
 	}
 
 	@PostMapping("/count")
-	public DaoResult getWorkCountDao(@RequestBody Work work, @RequestParam("page") int page) {
-		return workDao.getWorkCountDao(new Condition(page), work);
+	public Integer getWorkCountDao(@RequestBody Work work, @RequestParam("page") int page) {
+		return workDao.getWorkCountDao(new Condition(page), work).getResult(Integer.class);
 	}
 
 	@PostMapping("/one")
-	public DaoResult getWorkDao(@RequestBody Work work) {
-		return workDao.getWorkDao(work);
+	public Work getWorkDao(@RequestBody Work work) {
+		return workDao.getWorkDao(work).getResult(Work.class);
 	}
 
 	@PostMapping("/save")
-	public DaoResult saveWorkDao(@RequestBody Work work) {
-		return workDao.saveWorkDao(work);
+	public Integer saveWorkDao(@RequestBody Work work) {
+		return workDao.saveWorkDao(work).getResult(Integer.class);
 	}
 
 	@PostMapping("/delete")
-	public DaoResult deleteWorkDao(@RequestBody Work work) {
-		return workDao.deleteWorkDao(work);
+	public Boolean deleteWorkDao(@RequestBody Work work) {
+		return workDao.deleteWorkDao(work).isSuccessed();
 	}
 
 	@PostMapping("/addClick")
-	public DaoResult addWorkClick(@RequestBody Work work) {
-		return workDao.addWorkClick(work);
+	public Boolean addWorkClick(@RequestBody Work work) {
+		return workDao.addWorkClick(work).isSuccessed();
 	}
 }

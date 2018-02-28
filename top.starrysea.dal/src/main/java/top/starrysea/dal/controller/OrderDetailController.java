@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IOrderDetailDao;
 import top.starrysea.dal.entity.OrderDetail;
 
@@ -21,22 +20,22 @@ public class OrderDetailController {
 	private IOrderDetailDao orderDetailDao;
 
 	@PostMapping("/all")
-	public DaoResult getAllOrderDetailDao(@RequestBody OrderDetail orderDetail) {
-		return orderDetailDao.getAllOrderDetailDao(orderDetail);
+	public List<OrderDetail> getAllOrderDetailDao(@RequestBody OrderDetail orderDetail) {
+		return orderDetailDao.getAllOrderDetailDao(orderDetail).getResult(List.class);
 	}
 
 	@PostMapping("/save")
-	public DaoResult saveOrderDetailsDao(@RequestBody List<OrderDetail> orderDetails) {
-		return orderDetailDao.saveOrderDetailsDao(orderDetails);
+	public Boolean saveOrderDetailsDao(@RequestBody List<OrderDetail> orderDetails) {
+		return orderDetailDao.saveOrderDetailsDao(orderDetails).isSuccessed();
 	}
 
 	@PostMapping("/isExist")
-	public DaoResult isOrderDetailExistDao(@RequestBody OrderDetail orderDetail) {
-		return orderDetailDao.isOrderDetailExistDao(orderDetail);
+	public Boolean isOrderDetailExistDao(@RequestBody OrderDetail orderDetail) {
+		return orderDetailDao.isOrderDetailExistDao(orderDetail).getResult(Boolean.class);
 	}
 
 	@GetMapping("/xls")
-	public DaoResult getAllOrderDetailForXls() {
-		return orderDetailDao.getAllOrderDetailForXls();
+	public List<OrderDetail> getAllOrderDetailForXls() {
+		return orderDetailDao.getAllOrderDetailForXls().getResult(List.class);
 	}
 }

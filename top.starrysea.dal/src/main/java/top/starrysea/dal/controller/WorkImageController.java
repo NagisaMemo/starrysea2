@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IWorkImageDao;
 import top.starrysea.dal.entity.WorkImage;
 
@@ -20,12 +19,12 @@ public class WorkImageController {
 	private IWorkImageDao workImageDao;
 
 	@PostMapping("/all")
-	public DaoResult getAllWorkImageDao(@RequestBody WorkImage workImage) {
-		return workImageDao.getAllWorkImageDao(workImage);
+	public List<WorkImage> getAllWorkImageDao(@RequestBody WorkImage workImage) {
+		return workImageDao.getAllWorkImageDao(workImage).getResult(List.class);
 	}
 
 	@PostMapping("/save")
-	public DaoResult saveWorkImageDao(@RequestBody List<WorkImage> workImages) {
-		return workImageDao.saveWorkImageDao(workImages);
+	public Boolean saveWorkImageDao(@RequestBody List<WorkImage> workImages) {
+		return workImageDao.saveWorkImageDao(workImages).isSuccessed();
 	}
 }

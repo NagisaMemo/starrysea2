@@ -26,6 +26,6 @@ public class ActivityImageController {
 
 	@PostMapping("/save")
 	public Boolean saveActivityImageDao(@RequestBody List<ActivityImage> activityImages) {
-		return activityImageDao.saveActivityImageDao(activityImages).getResult(Boolean.class);
+		return activityImageDao.saveActivityImageDao(activityImages).isSuccessed();
 	}
 }

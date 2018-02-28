@@ -25,11 +25,11 @@ public class FundingController {
 
 	@PostMapping("/save")
 	public Boolean saveFundingDao(@RequestBody List<Funding> fundings) {
-		return fundingDao.saveFundingDao(fundings).getResult(Boolean.class);
+		return fundingDao.saveFundingDao(fundings).isSuccessed();
 	}
 
 	@PostMapping("/delete")
 	public Boolean deleteFundingDao(@RequestBody Funding funding) {
-		return fundingDao.deleteFundingDao(funding).getResult(Boolean.class);
+		return fundingDao.deleteFundingDao(funding).isSuccessed();
 	}
 }

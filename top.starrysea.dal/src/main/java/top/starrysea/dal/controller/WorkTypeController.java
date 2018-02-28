@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IWorkTypeDao;
 import top.starrysea.dal.entity.Orders;
 import top.starrysea.dal.entity.WorkType;
@@ -21,47 +20,47 @@ public class WorkTypeController {
 	private IWorkTypeDao workTypeDao;
 
 	@PostMapping("/all")
-	public DaoResult getAllWorkTypeDao(@RequestBody WorkType workType) {
-		return workTypeDao.getAllWorkTypeDao(workType);
+	public List<WorkType> getAllWorkTypeDao(@RequestBody WorkType workType) {
+		return workTypeDao.getAllWorkTypeDao(workType).getResult(List.class);
 	}
 
 	@PostMapping("/stock")
-	public DaoResult getWorkTypeStockDao(@RequestBody WorkType workType) {
-		return workTypeDao.getWorkTypeStockDao(workType);
+	public Integer getWorkTypeStockDao(@RequestBody WorkType workType) {
+		return workTypeDao.getWorkTypeStockDao(workType).getResult(Integer.class);
 	}
 
 	@PostMapping("/name")
-	public DaoResult getWorkTypeNameDao(@RequestBody WorkType workType) {
-		return workTypeDao.getWorkTypeNameDao(workType);
+	public WorkType getWorkTypeNameDao(@RequestBody WorkType workType) {
+		return workTypeDao.getWorkTypeNameDao(workType).getResult(WorkType.class);
 	}
 
 	@PostMapping("/save")
-	public DaoResult saveWorkTypeDao(@RequestBody List<WorkType> workTypes) {
-		return workTypeDao.saveWorkTypeDao(workTypes);
+	public Boolean saveWorkTypeDao(@RequestBody List<WorkType> workTypes) {
+		return workTypeDao.saveWorkTypeDao(workTypes).isSuccessed();
 	}
 
 	@PostMapping("/delete")
-	public DaoResult deleteWorkTypeDao(@RequestBody WorkType workType) {
-		return workTypeDao.deleteWorkTypeDao(workType);
+	public Boolean deleteWorkTypeDao(@RequestBody WorkType workType) {
+		return workTypeDao.deleteWorkTypeDao(workType).isSuccessed();
 	}
 
 	@PostMapping("/updateStock")
-	public DaoResult updateWorkTypeStockDao(@RequestBody WorkType workType) {
-		return workTypeDao.updateWorkTypeStockDao(workType);
+	public Boolean updateWorkTypeStockDao(@RequestBody WorkType workType) {
+		return workTypeDao.updateWorkTypeStockDao(workType).isSuccessed();
 	}
 
 	@PostMapping("/reduceStock")
-	public DaoResult reduceWorkTypeStockDao(@RequestBody WorkType workType) {
-		return workTypeDao.reduceWorkTypeStockDao(workType);
+	public Boolean reduceWorkTypeStockDao(@RequestBody WorkType workType) {
+		return workTypeDao.reduceWorkTypeStockDao(workType).isSuccessed();
 	}
 
 	@PostMapping("/updateStockByOrder")
-	public DaoResult updateWorkTypeStockDao(@RequestBody Orders order) {
-		return workTypeDao.updateWorkTypeStockDao(order);
+	public Boolean updateWorkTypeStockDao(@RequestBody Orders order) {
+		return workTypeDao.updateWorkTypeStockDao(order).isSuccessed();
 	}
 
 	@PostMapping("/allForCar")
-	public DaoResult getAllWorkTypeForShoppingCarDao(@RequestBody List<WorkType> workTypes) {
-		return workTypeDao.getAllWorkTypeForShoppingCarDao(workTypes);
+	public List<WorkType> getAllWorkTypeForShoppingCarDao(@RequestBody List<WorkType> workTypes) {
+		return workTypeDao.getAllWorkTypeForShoppingCarDao(workTypes).getResult(List.class);
 	}
 }

@@ -1,5 +1,7 @@
 package top.starrysea.dal.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IOnlineDao;
 import top.starrysea.dal.entity.Online;
 
@@ -19,12 +20,12 @@ public class OnlineController {
 	private IOnlineDao onlineDao;
 
 	@GetMapping("/all")
-	public DaoResult getAllOnlineDao() {
-		return onlineDao.getAllOnlineDao();
+	public List<Online> getAllOnlineDao() {
+		return onlineDao.getAllOnlineDao().getResult(List.class);
 	}
 
 	@PostMapping("/save")
-	public DaoResult saveOnlineDao(@RequestBody Online online) {
-		return onlineDao.saveOnlineDao(online);
+	public Boolean saveOnlineDao(@RequestBody Online online) {
+		return onlineDao.saveOnlineDao(online).isSuccessed();
 	}
 }

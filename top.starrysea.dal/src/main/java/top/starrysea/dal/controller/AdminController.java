@@ -18,7 +18,8 @@ public class AdminController {
 	private IAdminDao adminDao;
 
 	@PostMapping("/login")
-	public DaoResult loginDao(@RequestBody Admin admin) {
-		return adminDao.loginDao(admin);
+	public Object loginDao(@RequestBody Admin admin) {
+		DaoResult daoResult = adminDao.loginDao(admin);
+		return daoResult.isSuccessed() ? daoResult.getResult(Admin.class) : daoResult.getErrInfo();
 	}
 }

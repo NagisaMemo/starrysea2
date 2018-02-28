@@ -48,21 +48,21 @@ public class ActivityController {
 
 	@PostMapping("/update")
 	public Boolean updateActivityDao(@RequestBody Activity activity) {
-		return activityDao.updateActivityDao(activity).getResult(Boolean.class);
+		return activityDao.updateActivityDao(activity).isSuccessed();
 	}
 
 	@PostMapping("/addMoney")
 	public Boolean updateAddActivityMoneyDao(@RequestBody List<Activity> activitys) {
-		return activityDao.updateAddActivityMoneyDao(activitys).getResult(Boolean.class);
+		return activityDao.updateAddActivityMoneyDao(activitys).isSuccessed();
 	}
 
 	@PostMapping("/reduceMoney")
 	public Boolean updateReduceActivityMoneyDao(@RequestBody Activity activity) {
-		return activityDao.updateReduceActivityMoneyDao(activity).getResult(Boolean.class);
+		return activityDao.updateReduceActivityMoneyDao(activity).isSuccessed();
 	}
 
 	@PostMapping("/delete")
 	public Boolean deleteActivityDao(@RequestBody Activity activity) {
-		return activityDao.deleteActivityDao(activity).getResult(Boolean.class);
+		return activityDao.deleteActivityDao(activity).isSuccessed();
 	}
 }

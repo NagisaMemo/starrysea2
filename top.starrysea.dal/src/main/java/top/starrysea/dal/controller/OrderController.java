@@ -1,5 +1,7 @@
 package top.starrysea.dal.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import top.starrysea.common.Condition;
-import top.starrysea.common.DaoResult;
 import top.starrysea.dal.dao.IOrderDao;
 import top.starrysea.dal.entity.Orders;
 
@@ -20,32 +21,32 @@ public class OrderController {
 	private IOrderDao orderDao;
 
 	@PostMapping("/all")
-	public DaoResult getAllOrderDao(@RequestBody Orders order, @RequestParam("page") int page) {
-		return orderDao.getAllOrderDao(new Condition(page), order);
+	public List<Orders> getAllOrderDao(@RequestBody Orders order, @RequestParam("page") int page) {
+		return orderDao.getAllOrderDao(new Condition(page), order).getResult(List.class);
 	}
 
 	@PostMapping("/count")
-	public DaoResult getOrderCountDao(@RequestBody Orders order, @RequestParam("page") int page) {
-		return orderDao.getOrderCountDao(new Condition(page), order);
+	public Integer getOrderCountDao(@RequestBody Orders order, @RequestParam("page") int page) {
+		return orderDao.getOrderCountDao(new Condition(page), order).getResult(Integer.class);
 	}
 
 	@PostMapping("/one")
-	public DaoResult getOrderDao(@RequestBody Orders order) {
-		return orderDao.getOrderDao(order);
+	public Orders getOrderDao(@RequestBody Orders order) {
+		return orderDao.getOrderDao(order).getResult(Orders.class);
 	}
 
 	@PostMapping("/save")
-	public DaoResult saveOrderDao(@RequestBody Orders order) {
-		return orderDao.saveOrderDao(order);
+	public Orders saveOrderDao(@RequestBody Orders order) {
+		return orderDao.saveOrderDao(order).getResult(Orders.class);
 	}
 
 	@PostMapping("/update")
-	public DaoResult updateOrderDao(@RequestBody Orders order) {
-		return orderDao.updateOrderDao(order);
+	public Boolean updateOrderDao(@RequestBody Orders order) {
+		return orderDao.updateOrderDao(order).isSuccessed();
 	}
 
 	@PostMapping("/delete")
-	public DaoResult deleteOrderDao(@RequestBody Orders order) {
-		return orderDao.deleteOrderDao(order);
+	public Boolean deleteOrderDao(@RequestBody Orders order) {
+		return orderDao.deleteOrderDao(order).isSuccessed();
 	}
 }
