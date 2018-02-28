@@ -25,5 +25,6 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-config-server', version: '1.4.3.RELEASE'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
