@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,7 +41,7 @@ public class ActivityController {
 	private IActivityService activityService;
 
 	// 查询所有众筹活动
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@GetMapping("/index")
 	public ModelAndView queryAllActivityController(ActivityForAll activity, Device device) {
 		ServiceResult serviceResult = activityService.queryAllActivityService(activity.getCondition(),
 				activity.toDTO());
@@ -56,7 +56,7 @@ public class ActivityController {
 	}
 
 	// 查询所有众筹活动
-	@RequestMapping(value = "/ajax", method = RequestMethod.POST)
+	@PostMapping("/ajax")
 	@ResponseBody
 	public Map<String, Object> queryAllActivityControllerAjax(@RequestBody ActivityForAll activity) {
 		ServiceResult serviceResult = activityService.queryAllActivityService(activity.getCondition(),
@@ -71,7 +71,7 @@ public class ActivityController {
 	}
 
 	// 查询一个众筹活动的详情页
-	@RequestMapping(value = "/{activityId}", method = RequestMethod.GET)
+	@GetMapping("/{activityId}")
 	public ModelAndView queryActivityController(@Valid ActivityForOne activity, BindingResult bindingResult,
 			Device device) {
 		ServiceResult serviceResult = activityService.queryActivityService(activity.toDTO());
@@ -85,7 +85,7 @@ public class ActivityController {
 	}
 
 	// 查询一个众筹活动的详情页
-	@RequestMapping(value = "/detail/ajax", method = RequestMethod.POST)
+	@PostMapping("/detail/ajax")
 	@ResponseBody
 	public Map<String, Object> queryActivityControllerAjax(@RequestBody @Valid ActivityForOne activity,
 			BindingResult bindingResult) {
@@ -99,7 +99,7 @@ public class ActivityController {
 	}
 
 	// 添加一个众筹活动
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@PostMapping("/add")
 	public ModelAndView addActivityController(@RequestParam("coverFile") MultipartFile coverFile,
 			@Valid ActivityForAdd activity, BindingResult bindingResult, Device device) {
 		activityService.addActivityService(coverFile, activity.toDTO(), activity.toDTOImage());
@@ -107,7 +107,7 @@ public class ActivityController {
 	}
 
 	// 修改一个众筹活动的状态
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	@PostMapping("/modify")
 	public ModelAndView modifyActivityController(@Valid ActivityForModify activity, BindingResult bindingResult,
 			Device device) {
 		activityService.modifyActivityService(activity.toDTO());
@@ -115,14 +115,14 @@ public class ActivityController {
 	}
 
 	// 删除一个众筹活动
-	@RequestMapping(value = "/remove", method = RequestMethod.POST)
+	@PostMapping("/remove")
 	public ModelAndView removeActivityController(@Valid ActivityForOne activity, BindingResult bindingResult,
 			Device device) {
 		activityService.removeActivityService(activity.toDTO());
 		return ModelAndViewFactory.newSuccessMav("删除成功!", device);
 	}
 
-	@RequestMapping(value = "/funding/add", method = RequestMethod.POST)
+	@PostMapping("/funding/add")
 	public ModelAndView addFundingController(@Valid FundingForAddList fundings, BindingResult bindingResult,
 			Device device) {
 		for (FundingForAdd funding : fundings.getFundings()) {
@@ -133,7 +133,7 @@ public class ActivityController {
 		return ModelAndViewFactory.newSuccessMav("添加成功!", device);
 	}
 
-	@RequestMapping(value = "/funding/remove", method = RequestMethod.POST)
+	@PostMapping("/funding/remove")
 	public ModelAndView removeFundingController(@Valid FundingForRemove funding, BindingResult bindingResult,
 			Device device) {
 		activityService.removeFundingService(funding.toDTO());
