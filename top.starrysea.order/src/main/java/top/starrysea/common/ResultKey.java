@@ -3,13 +3,13 @@ package top.starrysea.common;
 import java.util.List;
 import java.util.Map;
 
-import top.starrysea.activity.object.dto.Activity;
+import top.starrysea.order.object.dto.Orders;
 
 public enum ResultKey {
 
 	LIST_1(List.class), LIST_2(List.class),
 
-	ACTIVITY(Activity.class),
+	ORDER(Orders.class),
 
 	INTEGER(Integer.class), BOOLEAN(Boolean.class), DOUBLE(Double.class),
 

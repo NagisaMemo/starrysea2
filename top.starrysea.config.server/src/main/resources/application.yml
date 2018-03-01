@@ -10,6 +10,7 @@ spring:
           uri: https://github.com/StarSeaProject/ss_config
           username: kuma_loveliver@163.com
           password: fsxjl2017
+          clone-on-start: true
 encrypt:
   key-store: 
     location: classpath:/server.jks
