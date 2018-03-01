@@ -1,14 +1,2 @@
 server:
   port: 8080
-spring:
-  application:
-    name: starrysea-gateway
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8000/eureka
-zuul:
-  routes:
-    activity: 
-      path: /activity/**
-      service-id: starrysea-activity

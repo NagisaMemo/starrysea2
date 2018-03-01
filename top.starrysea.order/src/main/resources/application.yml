@@ -1,11 +1,2 @@
 server:
   port: 8020
-spring: 
-  application: 
-      name: starrysea-order
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8000/eureka
-  instance:
-    prefer-ip-address: true

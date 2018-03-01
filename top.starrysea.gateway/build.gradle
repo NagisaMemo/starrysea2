@@ -27,5 +27,6 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka', version: '1.4.3.RELEASE'
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-zuul', version: '1.4.3.RELEASE'
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '1.4.2.RELEASE'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

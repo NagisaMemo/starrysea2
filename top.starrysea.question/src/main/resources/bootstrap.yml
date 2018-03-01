@@ -1,0 +1,8 @@
+spring: 
+  application:
+    name: starrysea-question
+  cloud:
+    config:
+      uri: http://localhost:8800/
+      profile: dev
+      label: null
