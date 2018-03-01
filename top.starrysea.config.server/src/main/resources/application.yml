@@ -13,6 +13,6 @@ spring:
 encrypt:
   key-store: 
     location: classpath:/server.jks
-    password: letmain
-    alias: mytestkey
-    secret: changeme
+    password: starrysea
+    alias: starrysea
+    secret: starrysea
