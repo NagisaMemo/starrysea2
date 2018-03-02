@@ -3,23 +3,19 @@ package top.starrysea.work.dao;
 import java.util.List;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import feign.hystrix.FallbackFactory;
 import top.starrysea.work.object.dto.WorkType;
 
-@FeignClient(name = "starrysea-dal")
+@FeignClient(name = "starrysea-dal", fallbackFactory = WorkTypeDaoFallbackFactory.class)
 public interface IWorkTypeDao {
 
 	@RequestMapping(value = "/workType/all", method = RequestMethod.POST)
 	public List<WorkType> getAllWorkTypeDao(@RequestBody WorkType workType);
-
-	@RequestMapping(value = "/workType/stock", method = RequestMethod.POST)
-	public Integer getWorkTypeStockDao(@RequestBody WorkType workType);
-
-	@RequestMapping(value = "/workType/name", method = RequestMethod.POST)
-	public WorkType getWorkTypeNameDao(@RequestBody WorkType workType);
 
 	@RequestMapping(value = "/workType/save", method = RequestMethod.POST)
 	public Boolean saveWorkTypeDao(@RequestBody List<WorkType> workTypes);
@@ -29,10 +25,14 @@ public interface IWorkTypeDao {
 
 	@RequestMapping(value = "/workType/updateStock", method = RequestMethod.POST)
 	public Boolean updateWorkTypeStockDao(@RequestBody WorkType workType);
+}
 
-	@RequestMapping(value = "/workType/reduceStock", method = RequestMethod.POST)
-	public Boolean reduceWorkTypeStockDao(@RequestBody WorkType workType);
+@Component
+class WorkTypeDaoFallbackFactory implements FallbackFactory<IWorkTypeDao> {
 
-	@RequestMapping(value = "/workType/allForCar", method = RequestMethod.POST)
-	public List<WorkType> getAllWorkTypeForShoppingCarDao(@RequestBody List<WorkType> workTypes);
+	@Override
+	public IWorkTypeDao create(Throwable cause) {
+		return null;
+	}
+
 }
