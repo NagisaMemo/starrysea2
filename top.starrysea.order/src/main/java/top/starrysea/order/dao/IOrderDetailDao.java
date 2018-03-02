@@ -12,15 +12,15 @@ import top.starrysea.order.object.dto.OrderDetail;
 @FeignClient(name = "starrysea-dal")
 public interface IOrderDetailDao {
 
-	@RequestMapping(value = "/all", method = RequestMethod.POST)
+	@RequestMapping(value = "/orderDetail/all", method = RequestMethod.POST)
 	public List<OrderDetail> getAllOrderDetailDao(@RequestBody OrderDetail orderDetail);
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/orderDetail/save", method = RequestMethod.POST)
 	public Boolean saveOrderDetailsDao(@RequestBody List<OrderDetail> orderDetails);
 
 	@RequestMapping(value = "/isExist", method = RequestMethod.POST)
 	public Boolean isOrderDetailExistDao(@RequestBody OrderDetail orderDetail);
 
-	@RequestMapping(value = "/xls", method = RequestMethod.GET)
+	@RequestMapping(value = "/orderDetail/xls", method = RequestMethod.GET)
 	public List<OrderDetail> getAllOrderDetailForXls();
 }

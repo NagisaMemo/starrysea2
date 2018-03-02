@@ -10,6 +10,7 @@ public class OrderDetail implements Entity {
 	private WorkType workType;
 	private Orders order;
 
+	public OrderDetail() {}
 	private OrderDetail(Builder builder) {
 		this.id = builder.id;
 		this.workType = builder.workType;

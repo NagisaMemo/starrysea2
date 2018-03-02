@@ -19,6 +19,7 @@ public class Orders implements Entity {
 	private String orderRemark;
 	private String orderPhone;
 
+	public Orders() {}
 	private Orders(Builder builder) {
 		this.orderId = builder.orderId;
 		this.orderNum = builder.orderNum;
@@ -200,9 +201,9 @@ public class Orders implements Entity {
 	public OrderForAll toVoForAll() {
 		String status = "";
 		if (this.orderStatus == (short) 1) {
-			status = "未发�?";
+			status = "未发�?";
 		} else if (this.orderStatus == (short) 2) {
-			status = "已发�?";
+			status = "已发�?";
 		}
 		return new OrderForAll(orderId, orderNum, orderName, status, orderTime);
 	}

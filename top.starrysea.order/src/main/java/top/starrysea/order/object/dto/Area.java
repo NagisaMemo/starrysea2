@@ -10,6 +10,7 @@ public class Area implements Entity {
 	private City city;
 	private String areaName;
 
+	public Area() {}
 	private Area(Builder builder) {
 		this.areaId = builder.areaId;
 		this.city = builder.city;

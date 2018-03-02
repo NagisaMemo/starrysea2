@@ -13,21 +13,21 @@ import top.starrysea.order.object.dto.Orders;
 @FeignClient(name = "starrysea-dal")
 public interface IOrderDao {
 
-	@RequestMapping(value = "/all", method = RequestMethod.POST)
+	@RequestMapping(value = "/order/all", method = RequestMethod.POST)
 	public List<Orders> getAllOrderDao(@RequestBody Orders order, @RequestParam("page") int page);
 
-	@RequestMapping(value = "/count", method = RequestMethod.POST)
+	@RequestMapping(value = "/order/count", method = RequestMethod.POST)
 	public Integer getOrderCountDao(@RequestBody Orders order, @RequestParam("page") int page);
 
-	@RequestMapping(value = "/one", method = RequestMethod.POST)
+	@RequestMapping(value = "/order/one", method = RequestMethod.POST)
 	public Orders getOrderDao(@RequestBody Orders order);
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/order/save", method = RequestMethod.POST)
 	public Orders saveOrderDao(@RequestBody Orders order);
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/order/update", method = RequestMethod.POST)
 	public Boolean updateOrderDao(@RequestBody Orders order);
 
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/order/delete", method = RequestMethod.POST)
 	public Boolean deleteOrderDao(@RequestBody Orders order);
 }

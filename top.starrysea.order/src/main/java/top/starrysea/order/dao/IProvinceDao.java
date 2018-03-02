@@ -11,6 +11,6 @@ import top.starrysea.order.object.dto.Area;
 @FeignClient(name = "starrysea-dal")
 public interface IProvinceDao {
 
-	@RequestMapping(value="/all",method=RequestMethod.GET)
+	@RequestMapping(value = "/province/all", method = RequestMethod.GET)
 	public List<Area> getAllProvinceDao();
 }

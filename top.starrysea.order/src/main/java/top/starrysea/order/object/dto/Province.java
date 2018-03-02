@@ -8,6 +8,7 @@ public class Province implements Entity {
 	private Integer provinceId;
 	private String provinceName;
 
+	public Province() {}
 	public Province(Integer provinceId, String provinceName) {
 		this.provinceId = provinceId;
 		this.provinceName = provinceName;
