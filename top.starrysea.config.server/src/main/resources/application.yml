@@ -11,9 +11,15 @@ spring:
           username: kuma_loveliver@163.com
           password: fsxjl2017
           clone-on-start: true
-encrypt:
+encrypt: 
   key-store: 
     location: classpath:/server.jks
     password: starrysea
     alias: starrysea
     secret: starrysea
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+  instance:
+    prefer-ip-address: true
