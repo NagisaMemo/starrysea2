@@ -19,9 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -52,9 +52,8 @@ public class OrderControllerImpl {
 	@Autowired
 	private IOrderService orderService;
 
-	
 	// 查询所有的订单
-	@RequestMapping(value = "/order", method = RequestMethod.POST)
+	@PostMapping("/index")
 	@ResponseBody
 	public Map<String, Object> queryAllOrderController(@RequestBody OrderForAll order) {
 		ServiceResult serviceResult = orderService.queryAllOrderService(order.getCondition(), order.toDTO());
@@ -69,9 +68,8 @@ public class OrderControllerImpl {
 		return theResult;
 	}
 
-	
 	// 根据订单号查询一个订单的具体信息以及发货情况
-	@RequestMapping(value = "/order/{orderNum}", method = RequestMethod.GET)
+	@GetMapping("/{orderNum}")
 	public ModelAndView queryOrderController(@Valid OrderForOne order, BindingResult bindingResult, Device device) {
 		ServiceResult serviceResult = orderService.queryOrderService(order.toDTO());
 		Orders o = serviceResult.getResult(ORDER);
@@ -82,9 +80,8 @@ public class OrderControllerImpl {
 		return modelAndView;
 	}
 
-	
 	// 根据订单号查询一个订单的具体信息以及发货情况
-	@RequestMapping(value = "/order/detail/ajax", method = RequestMethod.POST)
+	@PostMapping("/detail/ajax")
 	@ResponseBody
 	public Map<String, Object> queryOrderControllerAjax(@RequestBody @Valid OrderForRemove order,
 			BindingResult bindingResult) {
@@ -98,7 +95,7 @@ public class OrderControllerImpl {
 		return theResult;
 	}
 
-	@RequestMapping(value = "/order/toAddOrder", method = RequestMethod.POST)
+	@PostMapping("/toAddOrder")
 	public ModelAndView gotoAddOrder(@Valid WorkTypeForToAddOrders workTypes, Device device, HttpSession session) {
 		ServiceResult sr = orderService.queryWorkTypeStock(workTypes.toDTO());
 		if (!sr.isSuccessed()) {
@@ -113,9 +110,8 @@ public class OrderControllerImpl {
 		return modelAndView;
 	}
 
-	
 	// 对一个作品进行下单
-	@RequestMapping(value = "/order/add", method = RequestMethod.POST)
+	@PostMapping("/add")
 	public ModelAndView addOrderController(@Valid OrderForAdd order, BindingResult bindingResult, Device device,
 			HttpSession session) {
 		if (!order.getToken().equals(session.getAttribute(TOKEN))) {
@@ -129,24 +125,21 @@ public class OrderControllerImpl {
 		return ModelAndViewFactory.newSuccessMav("您已下单成功，之后将会为您派送！", device);
 	}
 
-	
 	// 修改一个订单的状态
-	@RequestMapping(value = "/order/modify/{orderId}", method = RequestMethod.POST)
+	@PostMapping("/modify/{orderId}")
 	public ModelAndView modifyOrderController(@Valid OrderForModify order, BindingResult bindingResult, Device device) {
 		orderService.modifyOrderService(order.toDTO());
 		return ModelAndViewFactory.newSuccessMav("发货成功！", device);
 	}
 
-	
 	// 删除一个订单
-	@RequestMapping(value = "/order/remove/{orderId}", method = RequestMethod.POST)
+	@PostMapping("/remove/{orderId}")
 	public ModelAndView removeOrderController(@Valid OrderForRemove order, BindingResult bindingResult, Device device) {
 		orderService.removeOrderService(order.toDTO());
 		return ModelAndViewFactory.newSuccessMav("删除成功!", device);
 	}
 
-	
-	@RequestMapping(value = "/order/export", method = RequestMethod.GET)
+	@GetMapping("/export")
 	public void exportOrderToXlsController(HttpServletResponse response) {
 		orderService.exportOrderToXlsService();
 		response.setHeader("content-type", "application/octet-stream");
@@ -160,8 +153,7 @@ public class OrderControllerImpl {
 		}
 	}
 
-	
-	@RequestMapping(value = "/order/resend", method = RequestMethod.POST)
+	@PostMapping("/resend")
 	@ResponseBody
 	public Map<String, Object> resendEmailController(@RequestBody @Valid OrderForRemove order,
 			BindingResult bindingResult) {
@@ -171,8 +163,7 @@ public class OrderControllerImpl {
 		return theResult;
 	}
 
-	
-	@RequestMapping(value = "/car/add", method = RequestMethod.POST)
+	@PostMapping("/car/add")
 	@ResponseBody
 	public Map<String, Object> addWorkToShoppingCarController(HttpSession session,
 			@RequestBody @Valid OrderDetailForAddOrder orderDetail, BindingResult bindingResult, Device device) {
@@ -193,8 +184,7 @@ public class OrderControllerImpl {
 		return theResult;
 	}
 
-	
-	@RequestMapping(value = "/car/remove/{index}", method = RequestMethod.GET)
+	@GetMapping("/car/remove/{index}")
 	@ResponseBody
 	public ModelAndView removeWorkFromShoppingCarController(HttpSession session, @Valid WorkTypeForRemoveCar workType,
 			BindingResult bindingResult, Device device) {
@@ -208,8 +198,7 @@ public class OrderControllerImpl {
 		return ModelAndViewFactory.newSuccessMav("从购物车移除作品成功!", device);
 	}
 
-	
-	@RequestMapping(value = "/car", method = RequestMethod.GET)
+	@GetMapping("/car")
 	public ModelAndView queryShoppingCarController(HttpSession session, Device device) {
 		List<OrderDetailForAddOrder> orderDetailList = (List<OrderDetailForAddOrder>) session.getAttribute(SHOPPINGCAR);
 		if (orderDetailList == null) {
@@ -227,8 +216,7 @@ public class OrderControllerImpl {
 		return modelAndView;
 	}
 
-	
-	@RequestMapping(value = "/car/removes", method = RequestMethod.POST)
+	@PostMapping("/car/removes")
 	public ModelAndView removeWorksFromShoppingCarController(HttpSession session,
 			@Valid WorkTypesForRemoveCar workTypes, BindingResult bindingResult, Device device) {
 		if (session.getAttribute(TOKEN) == null || !session.getAttribute(TOKEN).equals(workTypes.getToken())) {
