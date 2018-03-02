@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,7 +38,7 @@ public class WorkControllerImpl {
 	@Autowired
 	private IWorkService workService;
 
-	@RequestMapping(value = "/work", method = RequestMethod.GET)
+	@GetMapping("/index")
 	// 查询所有作品，此方法可用于作品管理，也可用于查看旧货
 	public ModelAndView queryAllWorkController(WorkForAll work, Device device) {
 		ServiceResult serviceResult = workService.queryAllWorkService(work.getCondition(), work.toDTO());
@@ -52,7 +52,7 @@ public class WorkControllerImpl {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/work/ajax", method = RequestMethod.POST)
+	@PostMapping("/ajax")
 	@ResponseBody
 	// 查询所有作品，此方法可用于作品管理，也可用于查看旧货
 	public Map<String, Object> queryAllWorkControllerAjax(@RequestBody WorkForAll work) {
@@ -69,7 +69,7 @@ public class WorkControllerImpl {
 	}
 
 	// 查询一个作品的详情页，此方法可用于作品管理，也可用于查看旧货
-	@RequestMapping(value = "/work/{workId}", method = RequestMethod.GET)
+	@GetMapping("/{workId}")
 	public ModelAndView queryWorkController(@Valid WorkForOne work, BindingResult bindingResult, Device device) {
 		ServiceResult serviceResult = workService.queryWorkService(work.toDTO());
 		Work w = serviceResult.getResult(WORK);
@@ -82,7 +82,7 @@ public class WorkControllerImpl {
 	}
 
 	// 查询一个作品的详情页，此方法可用于作品管理，也可用于查看旧货
-	@RequestMapping(value = "/work/detail/ajax", method = RequestMethod.POST)
+	@PostMapping("/detail/ajax")
 	@ResponseBody
 	public Map<String, Object> queryWorkControllerAjax(@RequestBody @Valid WorkForOne work,
 			BindingResult bindingResult) {
@@ -97,7 +97,7 @@ public class WorkControllerImpl {
 	}
 
 	// 添加一个作品
-	@RequestMapping(value = "/work/add", method = RequestMethod.POST)
+	@PostMapping("/add")
 	public ModelAndView addWorkController(@RequestParam("coverFile") MultipartFile coverFile,
 			@RequestParam("imageFiles") MultipartFile[] imageFiles, @Valid WorkForAdd work, BindingResult bindingResult,
 			Device device) {
@@ -106,20 +106,20 @@ public class WorkControllerImpl {
 	}
 
 	// 删除一个作品
-	@RequestMapping(value = "/work/remove", method = RequestMethod.POST)
+	@PostMapping("/remove")
 	public ModelAndView removeWorkController(@Valid WorkForOne work, BindingResult bindingResult, Device device) {
 		workService.removeWorkService(work.toDTO());
 		return ModelAndViewFactory.newSuccessMav("删除成功！", device);
 	}
 
-	@RequestMapping(value = "/worktype/remove", method = RequestMethod.POST)
+	@PostMapping("/worktype/remove")
 	public ModelAndView removeWorkTypeController(WorkTypeForRemove workType, BindingResult bindingResult,
 			Device device) {
 		workService.removeWorkTypeService(workType.toDTO());
 		return ModelAndViewFactory.newSuccessMav("删除作品类型成功！", device);
 	}
 
-	@RequestMapping(value = "/worktype/modifystock", method = RequestMethod.POST)
+	@PostMapping("/worktype/modifystock")
 	public ModelAndView modifyWorkTypeController(@Valid WorkTypeForModify workType, BindingResult bindingResult,
 			Device device) {
 		workService.modifyWorkTypeService(workType.toDTO());
