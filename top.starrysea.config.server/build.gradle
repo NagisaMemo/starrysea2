@@ -26,7 +26,8 @@ repositories {
 dependencies {
 	compile(
 		'org.springframework.boot:spring-boot-starter',
-		'org.springframework.boot:spring-boot-starter-actuator'
+		'org.springframework.boot:spring-boot-starter-actuator',
+		'org.springframework.boot:spring-boot-starter-security'
 	)
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka', version: '1.4.3.RELEASE'
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-config-server', version: '1.4.2.RELEASE'

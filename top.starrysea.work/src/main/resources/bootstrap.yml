@@ -8,6 +8,8 @@ spring:
       discovery:
         enabled: true
         service-id: starrysea-config
+      username: developer
+      password: developer
 eureka:
   client:
     service-url:
